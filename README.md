@@ -82,11 +82,13 @@ Puis le client dans un autre terminal :
 ## 👥 Équipe de développement
 
 Projet réalisé par :  
-- **[Nom 1]** — [Rôle, ex. Gestion du serveur et protocole réseau]  
-- **[Nom 2]** — [Rôle, ex. Développement du client]  
-- **[Nom 3]** — [Rôle, ex. Documentation et tests]  
+- **[OUTMANI Zinab]** — [S'occupe de la version n°]  
+- **[KIME Marwa]** — [S'occupe de la version n°]  
+- **[GOBFERT Frédéric]** — [S'occupe de la version n°]
+- **[MOHAMMEDI Selyan]** — [S'occupe de la version n°]  
 
-> Encadré par **[Nom de l’enseignant(e)]**, Département Informatique — IUT [Ville].
+
+> Encadré par **[M.François Rousselle]**, Département Informatique — IUT de Calais.
 
 ---
 
