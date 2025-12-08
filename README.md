@@ -61,7 +61,7 @@ SAE_Socket/
 │ ├── compte_rendu.pdf
 │ ├── diagrammes/
 └── README.md
-undefined
+
 ---
 
 ## 🧪 Compilation et exécution
