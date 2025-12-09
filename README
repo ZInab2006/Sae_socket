@@ -1,0 +1,40 @@
+# JEU DU PENDU - Client/Serveur en C
+
+## Compilation
+
+### Linux/macOS :
+```bash
+gcc -o serveur PN_serveur_V0.c
+gcc -o client PN_client_V0.c
+```
+
+### Windows (avec MinGW ou WSL) :
+Même commande dans WSL ou MinGW
+
+## Exécution
+
+### Terminal 1 - Serveur :
+```bash
+./serveur
+```
+
+### Terminal 2 - Client :
+```bash
+./client 127.0.0.1 5000
+```
+
+## Règles du jeu
+- Mot à deviner : 5 lettres
+- Maximum d'erreurs : 6
+- Entrez une lettre à la fois (A-Z)
+
+## En cas de problème
+
+Si vous voyez "Address already in use" :
+```bash
+lsof -i :5000
+kill -9 [PID]
+```
+
+## Auteur
+OUTMANI Zinab
