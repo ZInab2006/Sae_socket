@@ -12,7 +12,7 @@
 
 int main(int argc, char *argv[]){
     int descripteurSocket;
-    struct sockaddr_in sockaddrDistant;
+    struct sockaddr_in adresseServeur;
     socklen_t longueurAdresse;
     char buffer[LG_MESSAGE];
     int nb;
@@ -37,12 +37,12 @@ int main(int argc, char *argv[]){
     }
     printf("Socket créée! (%d)\n", descripteurSocket);
 
-    // Remplissage sockaddrDistant
-    longueurAdresse = sizeof(sockaddrDistant);
-    memset(&sockaddrDistant, 0x00, longueurAdresse);
-    sockaddrDistant.sin_family = AF_INET;
-    sockaddrDistant.sin_port = htons(port_dest);
-    if (inet_aton(ip_dest, &sockaddrDistant.sin_addr) == 0) {
+    // Remplissage adresseServeur
+    longueurAdresse = sizeof(adresseServeur);
+    memset(&adresseServeur, 0x00, longueurAdresse);
+    adresseServeur.sin_family = AF_INET;
+    adresseServeur.sin_port = htons(port_dest);
+    if (inet_aton(ip_dest, &adresseServeur.sin_addr) == 0) {
         printf("Adresse IP invalide : %s\n", ip_dest);
         close(descripteurSocket);
         exit(-2);
@@ -50,7 +50,7 @@ int main(int argc, char *argv[]){
 
     // Connexion
     printf("Tentative de connexion à %s:%d...\n", ip_dest, port_dest);
-    if ((connect(descripteurSocket, (struct sockaddr *)&sockaddrDistant, longueurAdresse)) == -1) {
+    if ((connect(descripteurSocket, (struct sockaddr *) &adresseServeur, longueurAdresse)) == -1) {
         perror("Erreur de connexion avec le serveur distant");
         close(descripteurSocket);
         exit(-3);
