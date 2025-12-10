@@ -16,10 +16,10 @@
 
 int main(int argc, char *argv[]){
     int socketEcoute;
-    struct sockaddr_in pointDeRencontreLocal;
+    struct sockaddr_in adresseServeur;
     socklen_t longueurAdresse;
     int socketDialogue;
-    struct sockaddr_in pointDeRencontreDistant;
+    struct sockaddr_in adresseClient;
     char messageRecu[LG_MESSAGE];
     int lus;
 
@@ -35,15 +35,15 @@ int main(int argc, char *argv[]){
     int opt = 1;
     setsockopt(socketEcoute, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
 
-    // Remplissage pointDeRencontreLocal
-    longueurAdresse = sizeof(pointDeRencontreLocal);
-    memset(&pointDeRencontreLocal, 0x00, longueurAdresse);
-    pointDeRencontreLocal.sin_family = PF_INET;
-    pointDeRencontreLocal.sin_addr.s_addr = htonl(INADDR_ANY);
-    pointDeRencontreLocal.sin_port = htons(PORT);
+    // Remplissage adresseServeur
+    longueurAdresse = sizeof(adresseServeur);
+    memset(&adresseServeur, 0x00, longueurAdresse);
+    adresseServeur.sin_family = PF_INET;
+    adresseServeur.sin_addr.s_addr = htonl(INADDR_ANY);
+    adresseServeur.sin_port = htons(PORT);
 
     // Bind
-    if ((bind(socketEcoute, (struct sockaddr *)&pointDeRencontreLocal, longueurAdresse)) < 0) {
+    if ((bind(socketEcoute, (struct sockaddr *)&adresseServeur, longueurAdresse)) < 0) {
         perror("bind");
         exit(-2);
     }
@@ -61,14 +61,14 @@ int main(int argc, char *argv[]){
         printf("\n=== Attente d'une demande de connexion (quitter avec Ctrl-C) ===\n");
 
         // Accept
-        socketDialogue = accept(socketEcoute, (struct sockaddr *)&pointDeRencontreDistant, &longueurAdresse);
+        socketDialogue = accept(socketEcoute, (struct sockaddr *) &adresseClient, &longueurAdresse);
         if (socketDialogue < 0) {
             perror("accept");
             continue;
         }
         printf(">>> Connexion acceptée depuis %s:%d\n", 
-               inet_ntoa(pointDeRencontreDistant.sin_addr),
-               ntohs(pointDeRencontreDistant.sin_port));
+               inet_ntoa(adresseClient.sin_addr),
+               ntohs(adresseClient.sin_port));
 
         // Initialiser partie
         int len_mot = strlen(MOT_SECRET);
