@@ -1,0 +1,27 @@
+# Fichiers compilés (exécutables)
+*.o
+*.out
+
+# Exécutables (sans extension .c)
+/PN_serveur_V[0-9]
+/PN_client1_V[0-9]
+/PN_client2_V[0-9]
+/serveur_v[0-9]
+/client_v[0-9]
+v2/PN_serveur_V2
+v2/PN_client1_V2
+v2/PN_client2_V2
+
+# Node modules (pour mermaid)
+node_modules/
+package-lock.json
+
+# Fichiers temporaires
+*.swp
+*.swo
+*~
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
