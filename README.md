@@ -82,10 +82,10 @@ Puis le client dans un autre terminal :
 ## 👥 Équipe de développement
 
 Projet réalisé par :  
-- **[OUTMANI Zinab]** — [S'occupe de la version n°]  
-- **[KIME Marwa]** — [S'occupe de la version n°]  
-- **[GOBFERT Frédéric]** — [S'occupe de la version n°]
-- **[MOHAMMEDI Selyan]** — [S'occupe de la version n°]  
+- **[OUTMANI Zinab]** — [S'occupe de la version n°0]  
+- **[KIME Marwa]** — [S'occupe de la version n°2]  
+- **[GOBFERT Frédéric]** — [S'occupe de la version n°1]
+- **[MOHAMMEDI Selyan]** — [S'occupe de la version n°3]  
 
 
 > Encadré par **[M.François Rousselle]**, Département Informatique — IUT de Calais.
