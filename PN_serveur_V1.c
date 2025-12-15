@@ -318,9 +318,16 @@ int main(int argc, char *argv[]){
                 send(socket_active, buffer, strlen(buffer) + 1, 0);
                 printf("Envoyé : %s\n", buffer);
 
-                // Changement de joueur actif en fonction des elimines
-                if (!inactif_elimine) {
-                    joueur_actif = (joueur_actif == 1) ? 2 : 1;
+                // si mauvaise lettre on change de joueur
+                if(!trouve){
+                    // Changement de joueur actif en fonction des elimines
+                    if (!inactif_elimine) {
+                        joueur_actif = (joueur_actif == 1) ? 2 : 1;
+                    }
+                    else{
+                        // le même joueur rejoue
+                        sleep(1);
+                    }
                 }
                 else{
                     sleep(1);
