@@ -246,6 +246,8 @@ int main(int argc, char *argv[]){
                 }
 
                 afficher_pendu(nb_erreurs);
+
+                printf("Mot à deviner : %s\n", mot_decouvert);
                 
                 // Fin de partie
                 if (strcmp(status, "gagne") == 0) {

@@ -32,9 +32,12 @@ void emit(const int code, const char* buffer, int socket) {
  * Client 1 - Celui qui fait deviner le mot
  * Entre le mot secret et vérifie les lettres proposées
  */
-int main(){
+int main(int argc, char *argv[]){
     int socket_client;
+    socklen_t longueurAdresse;
     struct sockaddr_in adresseServeur;
+    char ip_serveur[16];
+    int port_serveur;
     char status[10];
     char messageRecu[LG_MESSAGE];
     char mot_secret[MAX_MOT];  /** Mot secret à faire deviner */
@@ -48,13 +51,34 @@ int main(){
     char reponse_message[LG_MESSAGE];
     int longueur_mot;
 
+    // Récupération arguments
+    if (argc < 3) {
+        printf("USAGE : %s ip port\n", argv[0]);
+        printf("Exemple : %s 127.0.0.1 5000\n", argv[0]);
+        exit(-1);
+    }
+    strncpy(ip_serveur, argv[1], 15);
+    ip_serveur[15] = '\0';
+    sscanf(argv[2], "%d", &port_serveur);
+    
     // Création socket
     socket_client = socket(AF_INET, SOCK_STREAM, 0);
-
-    // Configuration adresse serveur
+    if (socket_client < 0) {
+        perror("Erreur socket");
+        exit(-1);
+    }
+    printf("Socket créée! (%d)\n", socket_client);
+    
+    // Configuration adresse
+    longueurAdresse = sizeof(adresseServeur);
+    memset(&adresseServeur, 0x00, longueurAdresse);
     adresseServeur.sin_family = AF_INET;
-    adresseServeur.sin_port = htons(5000);
-    adresseServeur.sin_addr.s_addr = inet_addr("127.0.0.1");
+    adresseServeur.sin_port = htons(port_serveur);
+    if (inet_aton(ip_serveur, &adresseServeur.sin_addr) == 0) {
+        printf("Adresse IP invalide : %s\n", ip_serveur);
+        close(socket_client);
+        exit(-2);
+    }
 
     // Connexion
     connect(socket_client, (struct sockaddr*)&adresseServeur, sizeof(adresseServeur));
