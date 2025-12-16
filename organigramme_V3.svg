@@ -52,7 +52,7 @@
   
   <!-- Serveur : accept() Client 1 -->
   <rect x="280" y="495" width="190" height="35" fill="#d4edda" stroke="#28a745" rx="3"/>
-  <text x="375" y="517" text-anchor="middle" font-size="11">accept() - Client 1 connecté</text>
+  <text x="375" y="517" text-anchor="middle" font-size="11">accept() - Client 1 connectÃ©</text>
   
   <!-- Serveur envoie message bienvenue -->
   <line x1="375" y1="550" x2="70" y2="550" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
@@ -76,22 +76,22 @@
   
   <!-- Serveur : accept() Client 2 -->
   <rect x="280" y="735" width="190" height="35" fill="#d4edda" stroke="#28a745" rx="3"/>
-  <text x="375" y="757" text-anchor="middle" font-size="11">accept() - Client 2 connecté</text>
+  <text x="375" y="757" text-anchor="middle" font-size="11">accept() - Client 2 connectÃ©</text>
   
   <!-- Serveur : fork() -->
   <rect x="240" y="785" width="270" height="50" fill="#f8d7da" stroke="#dc3545" rx="3"/>
-  <text x="375" y="810" text-anchor="middle" font-size="13" font-weight="bold">fork() - Création processus enfant</text>
-  <text x="375" y="825" text-anchor="middle" font-size="11">Le parent retourne à accept()</text>
+  <text x="375" y="810" text-anchor="middle" font-size="13" font-weight="bold">fork() - CrÃ©ation processus enfant</text>
+  <text x="375" y="825" text-anchor="middle" font-size="11">Le parent retourne Ã  accept()</text>
   
   <!-- Processus enfant -->
   <rect x="240" y="850" width="270" height="35" fill="#fff5ad" stroke="#666" rx="3"/>
-  <text x="375" y="872" text-anchor="middle" font-size="13" font-weight="bold">Processus enfant gère la partie</text>
+  <text x="375" y="872" text-anchor="middle" font-size="13" font-weight="bold">Processus enfant gÃ¨re la partie</text>
   
   <!-- Serveur envoie message bienvenue Client 2 -->
   <line x1="375" y1="900" x2="680" y2="900" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
   <text x="527" y="895" text-anchor="middle" font-size="11" fill="#333">4. 3001: Bienvenue Client 2</text>
   
-  <!-- Serveur demande mot à Client 1 -->
+  <!-- Serveur demande mot Ã  Client 1 -->
   <line x1="375" y1="935" x2="70" y2="935" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
   <text x="222" y="930" text-anchor="middle" font-size="11" fill="#333">5. 2001: Entrez un mot</text>
   
@@ -99,11 +99,11 @@
   <line x1="70" y1="970" x2="375" y2="970" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
   <text x="222" y="965" text-anchor="middle" font-size="11" fill="#333">6. Mot secret</text>
   
-  <!-- Serveur envoie taille mot à Client 2 -->
+  <!-- Serveur envoie taille mot Ã  Client 2 -->
   <line x1="375" y1="1005" x2="680" y2="1005" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
   <text x="527" y="1000" text-anchor="middle" font-size="11" fill="#333">7. 2002: Taille du mot</text>
   
-  <!-- Serveur envoie message à Client 1 -->
+  <!-- Serveur envoie message Ã  Client 1 -->
   <line x1="375" y1="1040" x2="70" y2="1040" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
   <text x="527" y="1035" text-anchor="middle" font-size="11" fill="#333">8. 3001: Le joueur 2 devine</text>
   
@@ -113,7 +113,7 @@
   
   <!-- Note Client 1 -->
   <rect x="0" y="1145" width="130" height="55" fill="#fff5ad" stroke="#666" rx="3"/>
-  <text x="65" y="1165" text-anchor="middle" font-size="10">Client 1 vérifie</text>
+  <text x="65" y="1165" text-anchor="middle" font-size="10">Client 1 vÃ©rifie</text>
   <text x="65" y="1180" text-anchor="middle" font-size="10">si lettre dans</text>
   <text x="65" y="1195" text-anchor="middle" font-size="10">le mot</text>
   
@@ -125,24 +125,24 @@
   
   <!-- Boucle -->
   <rect x="15" y="1215" width="720" height="300" fill="none" stroke="#666" stroke-width="2" stroke-dasharray="5,5" rx="5"/>
-  <text x="35" y="1235" font-size="11" font-weight="bold">[Boucle jusqu'à fin de partie]</text>
+  <text x="35" y="1235" font-size="11" font-weight="bold">[Boucle jusqu'Ã  fin de partie]</text>
   
   <!-- Client 2 envoie lettre -->
   <line x1="680" y1="1265" x2="375" y2="1265" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <text x="527" y="1260" text-anchor="middle" font-size="11" fill="#333">9. 2003: Lettre proposée</text>
+  <text x="527" y="1260" text-anchor="middle" font-size="11" fill="#333">9. 2003: Lettre proposÃ©e</text>
   
   <!-- Serveur transite lettre -->
   <line x1="375" y1="1300" x2="70" y2="1300" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
   <text x="222" y="1295" text-anchor="middle" font-size="11" fill="#333">10. 2003: Transite la lettre</text>
   
-  <!-- Client 1 envoie réponse -->
+  <!-- Client 1 envoie rÃ©ponse -->
   <line x1="70" y1="1335" x2="375" y2="1335" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <text x="222" y="1330" text-anchor="middle" font-size="11" fill="#333">11. 2006: Réponse formatée</text>
+  <text x="222" y="1330" text-anchor="middle" font-size="11" fill="#333">11. 2006: RÃ©ponse formatÃ©e</text>
   <text x="222" y="1345" text-anchor="middle" font-size="10" fill="#666">status mot erreurs</text>
   
-  <!-- Serveur transite réponse -->
+  <!-- Serveur transite rÃ©ponse -->
   <line x1="375" y1="1380" x2="680" y2="1380" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <text x="527" y="1375" text-anchor="middle" font-size="11" fill="#333">12. 2006: Transite la réponse</text>
+  <text x="527" y="1375" text-anchor="middle" font-size="11" fill="#333">12. 2006: Transite la rÃ©ponse</text>
   
   <!-- Fin de partie -->
   <rect x="25" y="1535" width="700" height="35" fill="#fff5ad" stroke="#666" rx="3"/>
@@ -154,7 +154,7 @@
   
   <!-- Client 2 close() -->
   <line x1="680" y1="1615" x2="375" y2="1615" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <text x="527" y="1610" text-anchor="middle" font-size="11" fill="#333">14. close()</text>
+  <text x="527" y="1610" text-anchor="middle" font-size="11" fill="#333">13. close()</text>
   
   <!-- Note processus enfant -->
   <rect x="265" y="1645" width="220" height="55" fill="#fff5ad" stroke="#666" rx="3"/>
@@ -162,7 +162,7 @@
   <text x="375" y="1680" text-anchor="middle" font-size="10">Le parent peut accepter</text>
   <text x="375" y="1695" text-anchor="middle" font-size="10">de nouvelles parties</text>
   
-  <!-- Légende des codes -->
+  <!-- LÃ©gende des codes -->
   <rect x="20" y="1720" width="710" height="120" fill="#f8f9fa" stroke="#666" rx="3"/>
   <text x="375" y="1745" text-anchor="middle" font-size="14" font-weight="bold">Codes de communication</text>
   <text x="100" y="1770" font-size="11">2001: JOUEUR_1_ENTRE_MOT</text>
@@ -170,9 +170,9 @@
   <text x="100" y="1800" font-size="11">2003: JOUEUR_2_PROPOSE_LETTRE</text>
   <text x="400" y="1770" font-size="11">2006: JOUEUR_2_DONNEES_PARTIE</text>
   <text x="400" y="1785" font-size="11">3001: MESSAGE</text>
-  <text x="400" y="1800" font-size="11">Format: code:données</text>
+  <text x="400" y="1800" font-size="11">Format: code:donnÃ©es</text>
   
-  <!-- Définition de la flèche -->
+  <!-- DÃ©finition de la flÃ¨che -->
   <defs>
     <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
       <polygon points="0 0, 10 3, 0 6" fill="#333"/>
