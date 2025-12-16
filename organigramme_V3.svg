@@ -101,7 +101,7 @@
   
   <!-- Serveur envoie taille mot à Client 2 -->
   <line x1="375" y1="1005" x2="680" y2="1005" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <text x="527" y="1000" text-anchor="middle" font-size="11" fill="#333">7. 2002: Taille du mot</text>
+  <text x="527" y="1000" text-anchor="middle" font-size="11" fill="#333">7. Taille du mot</text>
   
   <!-- Serveur envoie message à Client 1 -->
   <line x1="375" y1="1040" x2="70" y2="1040" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
@@ -133,7 +133,7 @@
   
   <!-- Serveur transite lettre -->
   <line x1="375" y1="1300" x2="70" y2="1300" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <text x="222" y="1295" text-anchor="middle" font-size="11" fill="#333">10. 2003: Transite la lettre</text>
+  <text x="222" y="1295" text-anchor="middle" font-size="11" fill="#333">10. Transite la lettre</text>
   
   <!-- Client 1 envoie réponse -->
   <line x1="70" y1="1335" x2="375" y2="1335" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
@@ -142,7 +142,7 @@
   
   <!-- Serveur transite réponse -->
   <line x1="375" y1="1380" x2="680" y2="1380" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <text x="527" y="1375" text-anchor="middle" font-size="11" fill="#333">12. 2006: Transite la réponse</text>
+  <text x="527" y="1375" text-anchor="middle" font-size="11" fill="#333">12. Transite la réponse</text>
   
   <!-- Fin de partie -->
   <rect x="25" y="1535" width="700" height="35" fill="#fff5ad" stroke="#666" rx="3"/>
