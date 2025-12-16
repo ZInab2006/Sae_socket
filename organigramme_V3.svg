@@ -157,21 +157,9 @@
   <text x="680" y="1605" text-anchor="middle" font-size="11">13. close()</text>
   
   <!-- Note processus enfant -->
-  <rect x="265" y="1635" width="220" height="55" fill="#fff5ad" stroke="#666" rx="3"/>
-  <text x="375" y="1655" text-anchor="middle" font-size="10">Processus enfant ferme</text>
-  <text x="375" y="1670" text-anchor="middle" font-size="10">ses sockets et se termine</text>
-  <text x="375" y="1685" text-anchor="middle" font-size="10">Le parent peut accepter</text>
-  <text x="375" y="1700" text-anchor="middle" font-size="10">de nouvelles parties</text>
-  
-  <!-- Légende des codes -->
-  <rect x="20" y="1720" width="710" height="120" fill="#f8f9fa" stroke="#666" rx="3"/>
-  <text x="375" y="1665" text-anchor="middle" font-size="14" font-weight="bold">Codes de communication</text>
-  <text x="100" y="1690" font-size="11">2001: JOUEUR_1_ENTRE_MOT</text>
-  <text x="100" y="1705" font-size="11">2002: JOUEUR_2_TAILLE_MOT_ET_PEUT_JOUER</text>
-  <text x="100" y="1720" font-size="11">2003: JOUEUR_2_PROPOSE_LETTRE</text>
-  <text x="400" y="1690" font-size="11">2006: JOUEUR_2_DONNEES_PARTIE</text>
-  <text x="400" y="1705" font-size="11">3001: MESSAGE</text>
-  <text x="400" y="1720" font-size="11">Format: code:données</text>
+  <rect x="265" y="1570" width="220" height="40" fill="#fff5ad" stroke="#666" rx="3"/>
+  <text x="375" y="1590" text-anchor="middle" font-size="10">Processus enfant se termine</text>
+  <text x="375" y="1605" text-anchor="middle" font-size="10">Le parent accepte nouvelles parties</text>
   
   <!-- Définition de la flèche -->
   <defs>
