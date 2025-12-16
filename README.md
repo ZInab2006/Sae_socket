@@ -138,4 +138,4 @@ kill -9 [PID]
 
 ## Auteur
 
-MOHAMMEDI Selyan
+Gobfert Frédéric
