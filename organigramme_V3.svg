@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 1600" style="background-color: white;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 1750" style="background-color: white;">
   <!-- Titre -->
   <text x="375" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#333">Organigramme V3 - Communication Client/Serveur avec fork()</text>
   
@@ -14,9 +14,9 @@
   <text x="680" y="85" text-anchor="middle" font-size="13" font-weight="bold">Client 2</text>
   
   <!-- Lignes verticales -->
-  <line x1="70" y1="100" x2="70" y2="1600" stroke="#999" stroke-width="1"/>
-  <line x1="375" y1="100" x2="375" y2="1600" stroke="#999" stroke-width="1"/>
-  <line x1="680" y1="100" x2="680" y2="1600" stroke="#999" stroke-width="1"/>
+  <line x1="70" y1="100" x2="70" y2="1750" stroke="#999" stroke-width="1"/>
+  <line x1="375" y1="100" x2="375" y2="1750" stroke="#999" stroke-width="1"/>
+  <line x1="680" y1="100" x2="680" y2="1750" stroke="#999" stroke-width="1"/>
   
   <!-- Phase d'initialisation serveur -->
   <rect x="240" y="130" width="270" height="35" fill="#fff5ad" stroke="#666" rx="3"/>
@@ -105,7 +105,7 @@
   
   <!-- Serveur envoie message à Client 1 -->
   <line x1="375" y1="1040" x2="70" y2="1040" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <text x="527" y="1035" text-anchor="middle" font-size="11" fill="#333">8. 3001: Le joueur 2 devine</text>
+  <text x="222" y="1035" text-anchor="middle" font-size="11" fill="#333">8. 3001: Le joueur 2 devine</text>
   
   <!-- Boucle de jeu -->
   <rect x="25" y="1085" width="700" height="35" fill="#fff5ad" stroke="#666" rx="3"/>
@@ -165,13 +165,13 @@
   
   <!-- Légende des codes -->
   <rect x="20" y="1720" width="710" height="120" fill="#f8f9fa" stroke="#666" rx="3"/>
-  <text x="375" y="1745" text-anchor="middle" font-size="14" font-weight="bold">Codes de communication</text>
-  <text x="100" y="1770" font-size="11">2001: JOUEUR_1_ENTRE_MOT</text>
-  <text x="100" y="1785" font-size="11">2002: JOUEUR_2_TAILLE_MOT_ET_PEUT_JOUER</text>
-  <text x="100" y="1800" font-size="11">2003: JOUEUR_2_PROPOSE_LETTRE</text>
-  <text x="400" y="1770" font-size="11">2006: JOUEUR_2_DONNEES_PARTIE</text>
-  <text x="400" y="1785" font-size="11">3001: MESSAGE</text>
-  <text x="400" y="1800" font-size="11">Format: code:données</text>
+  <text x="375" y="1665" text-anchor="middle" font-size="14" font-weight="bold">Codes de communication</text>
+  <text x="100" y="1690" font-size="11">2001: JOUEUR_1_ENTRE_MOT</text>
+  <text x="100" y="1705" font-size="11">2002: JOUEUR_2_TAILLE_MOT_ET_PEUT_JOUER</text>
+  <text x="100" y="1720" font-size="11">2003: JOUEUR_2_PROPOSE_LETTRE</text>
+  <text x="400" y="1690" font-size="11">2006: JOUEUR_2_DONNEES_PARTIE</text>
+  <text x="400" y="1705" font-size="11">3001: MESSAGE</text>
+  <text x="400" y="1720" font-size="11">Format: code:données</text>
   
   <!-- Définition de la flèche -->
   <defs>
