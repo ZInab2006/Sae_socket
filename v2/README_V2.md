@@ -21,9 +21,8 @@ Client 1 (fait deviner)  ←→  Serveur (relais)  ←→  Client 2 (devine)
 # Compiler le serveur
 gcc -o PN_serveur_V2 PN_serveur_V2.c
 
-# Compiler les clients
-gcc -o PN_client1_V2 PN_client1_V2.c
-gcc -o PN_client2_V2 PN_client2_V2.c
+# Compiler le client unique
+gcc -o PN_client_V2 PN_client_V2.c
 ```
 
 ### Windows (avec MinGW ou WSL) :
@@ -38,15 +37,17 @@ Même commande dans WSL ou MinGW
 
 ### Terminal 2 - Client 1 (fait deviner) :
 ```bash
-./PN_client1_V2
+./PN_client_V2 1 127.0.0.1 5000
 ```
 Le client 1 doit entrer un mot à faire deviner.
 
 ### Terminal 3 - Client 2 (devine) :
 ```bash
-./PN_client2_V2 127.0.0.1 5000
+./PN_client_V2 2 127.0.0.1 5000
 ```
 Le client 2 propose des lettres pour deviner le mot.
+
+**Note** : Un seul fichier client (`PN_client_V2.c`) permet de jouer les deux rôles en spécifiant le rôle (1 ou 2) en argument.
 
 ## Règles du jeu
 
@@ -70,6 +71,7 @@ Le client 2 propose des lettres pour deviner le mot.
   - `"oui mot_decouvert nb_erreurs"` (ex: `"oui P__DU 0"`)
   - `"non mot_decouvert nb_erreurs"` (ex: `"non P__DU 1"`)
   - `"deja mot_decouvert nb_erreurs"` (lettre déjà testée)
+  - `"erreur mot_decouvert nb_erreurs"` (caractère invalide)
   - `"gagne mot_complet nb_erreurs"` (victoire)
   - `"perdu mot_secret nb_erreurs"` (défaite)
 
@@ -80,6 +82,11 @@ Le client 2 propose des lettres pour deviner le mot.
 - ✅ Gestion des lettres déjà testées
 - ✅ Détection automatique de fin de partie
 - ✅ Serveur qui reste actif pour plusieurs parties
+- ✅ Client unique pour les deux rôles (argument rôle)
+
+## Organigramme
+
+Un organigramme détaillé de la communication est disponible dans `organigramme_V2.svg`.
 
 ## En cas de problème
 
@@ -95,5 +102,4 @@ kill -9 [PID]
 
 ## Auteur
 
-Mapbaya
-
+MOHAMMEDI Selyan
