@@ -89,7 +89,7 @@
   
   <!-- Serveur envoie message bienvenue Client 2 -->
   <line x1="375" y1="900" x2="680" y2="900" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
-  <text x="527" y="895" text-anchor="middle" font-size="11" fill="#333">4. 3001: Bienvenue Client 2</text>
+  <text x="527" y="895" text-anchor="middle" font-size="11" fill="#333">4. Bienvenue Client 2</text>
   
   <!-- Serveur demande mot à Client 1 -->
   <line x1="375" y1="935" x2="70" y2="935" stroke="#333" stroke-width="2" marker-end="url(#arrowhead)"/>
