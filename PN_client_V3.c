@@ -13,7 +13,6 @@
 #define MAX_ERREURS 6
 
 // Voir définition des codes dans PN_serveur_V3.c
-
 #define JOUEUR_1_ENTRE_MOT 2001 
 #define JOUEUR_2_TAILLE_MOT_ET_PEUT_JOUER 2002
 #define JOUEUR_2_PROPOSE_LETTRE 2003
@@ -28,8 +27,110 @@ void emit(const int code, const char* buffer, int socket) {
     send(socket, message, strlen(message), 0);
 }
 
+// Fonction pour afficher le pendu
+void afficher_pendu(int nb_erreurs) {
+    printf("\n");
+    switch(nb_erreurs) {
+        case 0:
+            printf("  +---+\n");
+            printf("  |   |\n");
+            printf("      |\n");
+            printf("      |\n");
+            printf("      |\n");
+            printf("      |\n");
+            printf("=========\n");
+            break;
+        case 1:
+            printf("  +---+\n");
+            printf("  |   |\n");
+            printf("  O   |\n");
+            printf("      |\n");
+            printf("      |\n");
+            printf("      |\n");
+            printf("=========\n");
+            break;
+        case 2:
+            printf("  +---+\n");
+            printf("  |   |\n");
+            printf("  O   |\n");
+            printf("  |   |\n");
+            printf("      |\n");
+            printf("      |\n");
+            printf("=========\n");
+            break;
+        case 3:
+            printf("  +---+\n");
+            printf("  |   |\n");
+            printf("  O   |\n");
+            printf(" /|   |\n");
+            printf("      |\n");
+            printf("      |\n");
+            printf("=========\n");
+            break;
+        case 4:
+            printf("  +---+\n");
+            printf("  |   |\n");
+            printf("  O   |\n");
+            printf(" /|\\  |\n");
+            printf("      |\n");
+            printf("      |\n");
+            printf("=========\n");
+            break;
+        case 5:
+            printf("  +---+\n");
+            printf("  |   |\n");
+            printf("  O   |\n");
+            printf(" /|\\  |\n");
+            printf(" /    |\n");
+            printf("      |\n");
+            printf("=========\n");
+            break;
+        case 6:
+            printf("  +---+\n");
+            printf("  |   |\n");
+            printf("  O   |\n");
+            printf(" /|\\  |\n");
+            printf(" / \\  |\n");
+            printf("      |\n");
+            printf("=========\n");
+            printf("  PERDU !\n");
+            break;
+        default:
+            break;
+    }
+    printf("\n");
+}
+
+void joueur_choisi_lettre(int socket_client) {
+    char lettre[2];
+    printf("\nEntrez une lettre : ");
+    if (scanf(" %c", &lettre[0]) != 1) {
+        printf("Erreur de saisie, réessayez.\n");
+        joueur_choisi_lettre(socket_client);
+    }
+
+    int c;
+    int chars_ignores = 0;
+    while ((c = getchar()) != '\n' && c != EOF) {
+        chars_ignores++;
+    }
+    if (chars_ignores > 0) {
+        printf("⚠ Attention : seule la première lettre a été prise en compte.\n");
+    }
+    
+    lettre[0] = toupper(lettre[0]);
+
+    if (!isalpha(lettre[0])) {
+        printf("Veuillez entrer une lettre valide (A-Z)\n");
+        joueur_choisi_lettre(socket_client);
+        return;
+    } 
+
+    emit(JOUEUR_2_PROPOSE_LETTRE, lettre, socket_client);     
+}
+
 /**
- * Client 1 - Celui qui fait deviner le mot
+ * Client - Celui qui fait deviner le mot ou devine en fonction du serveur
  * Entre le mot secret et vérifie les lettres proposées
  */
 int main(int argc, char *argv[]){
@@ -40,12 +141,15 @@ int main(int argc, char *argv[]){
     int port_serveur;
     char status[10];
     char messageRecu[LG_MESSAGE];
+    int lus;
+
+    // Client 1
     char mot_secret[MAX_MOT];  /** Mot secret à faire deviner */
     char mot_affiche[MAX_MOT];  /** Mot avec lettres découvertes (ex: "P__DU") */
     char lettres_deja_testees[26] = {0};  /** Tableau pour éviter les lettres déjà testées */
-    int lus;
     int nb_erreurs = 0;
     int partie_en_cours = 1;
+    int type_joueur = -1;
 
     int reponse_code; // ex : 2003
     char reponse_message[LG_MESSAGE];
@@ -197,6 +301,60 @@ int main(int argc, char *argv[]){
 
                 break;
             }
+            case JOUEUR_2_TAILLE_MOT_ET_PEUT_JOUER:
+                longueur_mot = atoi(reponse_message);
+                printf("\n===========================================\n");
+                printf("    BIENVENUE AU JEU DU PENDU !\n");
+                printf("===========================================\n");
+                printf("Mot de %d lettres à deviner\n", longueur_mot);
+                printf("Vous avez droit à 6 erreurs maximum\n");
+                printf("===========================================\n\n");
+                
+                joueur_choisi_lettre(socket_client);
+          
+                break;
+            case JOUEUR_2_DONNEES_PARTIE:
+                if (sscanf(reponse_message, "%s %s %d", status, mot_affiche, &nb_erreurs) != 3) {
+                    printf("Réponse inattendue : %s\n",messageRecu);
+                    break;
+                }
+
+                if (strcmp(status, "oui") == 0) {
+                    printf("✓ Bonne lettre !\n");
+                } else if (strcmp(status, "non") == 0) {
+                    printf("✗ Mauvaise lettre.\n");
+                } else if (strcmp(status, "deja") == 0) {
+                    printf("⚠ Lettre déjà choisie. Choisissez-en une autre.\n");
+                } else if (strcmp(status, "erreur") == 0) {
+                    printf("⚠ Caractère invalide. Entrez une lettre (A-Z).\n");
+                }
+
+                afficher_pendu(nb_erreurs);
+
+                printf("Mot à deviner : %s\n", mot_affiche);
+                
+                // Fin de partie
+                if (strcmp(status, "gagne") == 0) {
+                    printf("\n");
+                    printf("*******************************************\n");
+                    printf("  FÉLICITATIONS ! VOUS AVEZ GAGNÉ !\n");
+                    printf("  Le mot était : %s\n", mot_affiche);
+                    printf("  Nombre d'erreurs : %d\n", nb_erreurs);
+                    printf("*******************************************\n");
+                    partie_en_cours = 0;
+                    break;
+                } else if (strcmp(status, "perdu") == 0) {
+                    printf("\n");
+                    printf("*******************************************\n");
+                    printf("  DOMMAGE ! VOUS AVEZ PERDU !\n");
+                    printf("  Le mot était : %s\n", mot_affiche);
+                    printf("*******************************************\n");
+                    partie_en_cours = 0;
+                    break;
+                } else {
+                    joueur_choisi_lettre(socket_client);
+                }
+                break;
             case MESSAGE:
                 printf("%s\n", reponse_message);
                 break;
