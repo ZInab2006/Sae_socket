@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 1750" style="background-color: white;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 1650" style="background-color: white;">
   <!-- Titre -->
   <text x="375" y="30" text-anchor="middle" font-size="20" font-weight="bold" fill="#333">Organigramme V3 - Communication Client/Serveur avec fork()</text>
   
@@ -14,9 +14,9 @@
   <text x="680" y="85" text-anchor="middle" font-size="13" font-weight="bold">Client 2</text>
   
   <!-- Lignes verticales -->
-  <line x1="70" y1="100" x2="70" y2="1750" stroke="#999" stroke-width="1"/>
-  <line x1="375" y1="100" x2="375" y2="1750" stroke="#999" stroke-width="1"/>
-  <line x1="680" y1="100" x2="680" y2="1750" stroke="#999" stroke-width="1"/>
+  <line x1="70" y1="100" x2="70" y2="1650" stroke="#999" stroke-width="1"/>
+  <line x1="375" y1="100" x2="375" y2="1650" stroke="#999" stroke-width="1"/>
+  <line x1="680" y1="100" x2="680" y2="1650" stroke="#999" stroke-width="1"/>
   
   <!-- Phase d'initialisation serveur -->
   <rect x="240" y="130" width="270" height="35" fill="#fff5ad" stroke="#666" rx="3"/>
