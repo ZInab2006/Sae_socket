@@ -102,4 +102,4 @@ kill -9 [PID]
 
 ## Auteur
 
-MOHAMMEDI Selyan
+Mapbaya
