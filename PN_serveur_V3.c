@@ -31,7 +31,7 @@ Joueur 2 : devine (propose des lettres)
 
 #define JOUEUR_1_ENTRE_MOT 2001 
 #define JOUEUR_2_TAILLE_MOT_ET_PEUT_JOUER 2002
-#define JOUEUR_2_PROPOSE_LETTRE 2003
+#define JOUEUR_2_PROPOSE_LETTRE_OU_MOT 2003
 #define JOUEUR_1_VALIDE_OU_NON 2004
 #define JOUEUR_2_RECOIT_VALIDE_OU_NON 2005
 #define JOUEUR_2_DONNEES_PARTIE 2006
@@ -179,12 +179,11 @@ int main(int argc, char *argv[]){
                 
                 printf("Reçu du client 2 (lettre) : %s → Transite au client 1\n", messageRecu);
 
-                emit(JOUEUR_2_PROPOSE_LETTRE, messageRecu, socket_client_1, 1);
+                emit(JOUEUR_2_PROPOSE_LETTRE_OU_MOT, messageRecu, socket_client_1, 1);
 
                 // Recevoir réponse du client 1
                 traiter_message(messageRecu, socket_client_1);
                 printf("Reçu du client 1 (réponse) : %s → Transite au client 2\n", messageRecu);
-
 
                 // Vérifier fin de partie
                 if (strstr(messageRecu, "gagne") != NULL || strstr(messageRecu, "perdu") != NULL) {
