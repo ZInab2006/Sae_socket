@@ -1,3 +1,124 @@
+__ Zinab__ 🎀
+zinab9191
+Invisible
+
+Caradoc — 12/11/25, 3:15 PM
+Vous gérer le dépôt sur Moodle?
+Мудрый — 12/11/25, 3:35 PM
+D'accord merci! Oui on s'en occupe
+Selyan — 12/12/25, 3:13 PM
+Vous faites du télé travail ?
+Мудрый — 12/12/25, 3:53 PM
+Oui!
+Selyan — 12/12/25, 4:09 PM
+Synave a fait l'appel ce matin
+Jsp si il fait que pour mon td
+Мудрый — 12/12/25, 4:18 PM
+Sûrement ..
+Merci d'avoir prévenu
+Selyan — 12/13/25, 3:15 PM
+Qui s'occupe de la v4?
+Je suis toujours sur la v3 (que je vais terminer aujourd'hui normalement), il me manquera le (diagramme) à faire
+Caradoc — 12/13/25, 3:16 PM
+Moi je suis toujours sur la V1, je pense avoir fini aujourdhui ou demain matin selon les galères.
+Selyan — 12/13/25, 3:18 PM
+Pour te dire j'ai commencé à vraiment travailler hier soir, j'ai pas réussi dans la semaine 
+Entre les changements de salle, les horaires décalés, les cours en même temps surtout
+Mais ducoup là j'ai changé quasiment tout le code, je fais le travail que je devais faire en 3/4j en 1 journée max
+Caradoc — 12/13/25, 3:22 PM
+ok pas de soucis, moi j'ai travaillé dessus hier et depuis ce matin. Mais je ne suis pas dispo en fin d'aprem donc peut être plutôt demain matin du coup.
+Selyan — 12/13/25, 9:03 PM
+J'ai terminé la v3 (elle fonctionne). Dites moi si vous voulez le code maintenant ou plutôt attendre lundi pour tester
+Мудрый — 12/14/25, 12:09 AM
+Je vais la commencer demain
+Мудрый — 12/14/25, 12:10 AM
+Tu peux la push sur une branche V3 sur GitHub ? 
+Selyan — 12/14/25, 10:39 PM
+j'ai pas vu le message déso !
+Concernant github je galère pas mal avec git, tu penses pouvoir le faire si je te donne les fichiers ? 
+Мудрый — 12/14/25, 10:39 PM
+Oui pas de soucis!
+Selyan — 12/15/25, 8:47 AM
+Vous êtes en quelle salle?
+Мудрый — 12/15/25, 8:48 AM
+136
+Selyan — 12/15/25, 9:51 AM
+Antigouvernementalisation
+Selyan — 12/15/25, 3:46 PM
+Image
+Caradoc — 12/15/25, 3:46 PM
+cest de la SAE ça?
+Мудрый — 12/15/25, 3:46 PM
+Oui😂
+Selyan — 12/15/25, 3:46 PM
+Oui
+Selyan — Yesterday at 10:56 AM
+je vais adapter mon code pour qu'il fonctionne seul, je devrais terminer d'ici 16h max
+__ Zinab__ 🎀
+
+ — Yesterday at 6:10 PM
+Salut everybody !!
+on est d'accord pour la presentation oral de demain , on devrai presenter le code de la V4 , ainsi une demo , et le diagramme 
+Selyan — Yesterday at 6:25 PM
+Il me semble oui
+Qu'en est il de celle-ci? 
+Мудрый — Yesterday at 6:38 PM
+Oui normalement
+Мудрый — Yesterday at 6:39 PM
+Elle devrait être finie
+T'as fini la v3?
+Selyan — Yesterday at 6:39 PM
+Ça fonctionne
+J'ai pas eu grand chose à modifier grâce à mon système mis en place
+Мудрый — Yesterday at 6:41 PM
+Tu peux envoyer les fichiers sur ⁠🔗・v3 je vais les push github
+Selyan — Yesterday at 7:53 PM
+c'est fait. Je te conseille de compiler et de tester vite fait
+Selyan — Yesterday at 11:07 PM
+Demain matin : compte-rendu verification du fonctionnement du 4 ?
+Мудрый — Yesterday at 11:08 PM
+oui
+__ Zinab__ 🎀
+
+ — 8:33 AM
+Êtes vous à l'IUT
+?
+Selyan — 8:34 AM
+Non, me suis réveillé ya 20m .. j'ai raté mon premier réveil
+Caradoc — 8:34 AM
+Oui mais en cours 😕
+Selyan — 8:53 AM
+@Мудрый vous êtes en quelle salle ?
+__ Zinab__ 🎀
+
+ — 8:54 AM
+Moi je suis en biblio
+Selyan — 8:54 AM
+Marwa est pas avec toi?
+__ Zinab__ 🎀
+
+ — 8:54 AM
+Je pense pas que Marwa est là ?
+Selyan — 9:47 AM
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <string.h>
+Expand
+PN_client_V3.c
+14 KB
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <string.h>
+Expand
+PN_serveur_V3.c
+8 KB
+﻿
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -15,7 +136,7 @@
 // Voir définition des codes dans PN_serveur_V3.c
 #define JOUEUR_1_ENTRE_MOT 2001 
 #define JOUEUR_2_TAILLE_MOT_ET_PEUT_JOUER 2002
-#define JOUEUR_2_PROPOSE_LETTRE 2003
+#define JOUEUR_2_PROPOSE_LETTRE_OU_MOT 2003
 #define JOUEUR_1_VALIDE_OU_NON 2004
 #define JOUEUR_2_RECOIT_VALIDE_OU_NON 2005
 #define JOUEUR_2_DONNEES_PARTIE 2006
@@ -101,32 +222,44 @@ void afficher_pendu(int nb_erreurs) {
     printf("\n");
 }
 
-void joueur_choisi_lettre(int socket_client) {
-    char lettre[2];
-    printf("\nEntrez une lettre : ");
-    if (scanf(" %c", &lettre[0]) != 1) {
+void joueur_choisi_lettre(int socket_client, int taille_mot) {
+    char buffer[1024]; // taille raisonnable côté saisie
+
+    printf("\nEntrez une lettre ou un mot : ");
+
+    if (fgets(buffer, sizeof(buffer), stdin) == NULL) {
         printf("Erreur de saisie, réessayez.\n");
-        joueur_choisi_lettre(socket_client);
-    }
-
-    int c;
-    int chars_ignores = 0;
-    while ((c = getchar()) != '\n' && c != EOF) {
-        chars_ignores++;
-    }
-    if (chars_ignores > 0) {
-        printf("⚠ Attention : seule la première lettre a été prise en compte.\n");
-    }
-    
-    lettre[0] = toupper(lettre[0]);
-
-    if (!isalpha(lettre[0])) {
-        printf("Veuillez entrer une lettre valide (A-Z)\n");
-        joueur_choisi_lettre(socket_client);
+        joueur_choisi_lettre(socket_client, taille_mot);
         return;
-    } 
+    }
 
-    emit(JOUEUR_2_PROPOSE_LETTRE, lettre, socket_client);     
+    // Supprime '\n'
+    buffer[strcspn(buffer, "\n")] = '\0';
+
+    size_t len = strlen(buffer);
+
+    if (len == 0) {
+        printf("Veuillez entrer au moins un caractère.\n");
+        joueur_choisi_lettre(socket_client, taille_mot);
+        return;
+    }
+
+    if (len > taille_mot) {
+        printf("Mot trop long.\n");
+        joueur_choisi_lettre(socket_client, taille_mot);
+        return;
+    }
+
+    // Vérification pour que ce soit uniquement des lettres
+    for (size_t i = 0; i < len; i++) {
+        if (!isalpha((unsigned char)buffer[i])) {
+            printf("Uniquement des lettres (A-Z).\n");
+            return;
+        }
+        buffer[i] = toupper(buffer[i]);
+    }
+
+    emit(JOUEUR_2_PROPOSE_LETTRE_OU_MOT, buffer, socket_client); // envoi au serveur
 }
 
 /**
@@ -224,44 +357,59 @@ int main(int argc, char *argv[]){
                 mot_affiche[longueur_mot] = '\0';
                 send(socket_client, mot_secret, longueur_mot, 0);
                 break;
-            case JOUEUR_2_PROPOSE_LETTRE: {
+            case JOUEUR_2_PROPOSE_LETTRE_OU_MOT: {
                 char status[20];
                 int partie_terminee = 0;
+                int trouve = 0; // si lettre trouvée = 1
 
-                char lettre = toupper((unsigned char)reponse_message[0]);
+                int len = strlen(reponse_message);
 
-                printf("Le joueur propose la lettre : %c\n", lettre);
+                if (len == 1) { // si c'est une lettre uniquement
+                    char lettre = toupper((unsigned char)reponse_message[0]);
 
-                // Vérification lettre valide
-                if (!isalpha((unsigned char)lettre) || lettre < 'A' || lettre > 'Z') {
-                    strcpy(status, "erreur");
-                    snprintf(messageRecu, LG_MESSAGE, "%s %s %d", status, mot_affiche, nb_erreurs);
-                    emit(JOUEUR_2_DONNEES_PARTIE, messageRecu, socket_client);
-                    break;
+                    printf("Le joueur propose la lettre : %c\n", lettre);
+
+                    // Vérification lettre valide
+                    if (!isalpha((unsigned char)lettre) || lettre < 'A' || lettre > 'Z') {
+                        strcpy(status, "erreur");
+                        snprintf(messageRecu, LG_MESSAGE, "%s %s %d", status, mot_affiche, nb_erreurs);
+                        emit(JOUEUR_2_DONNEES_PARTIE, messageRecu, socket_client);
+                        break;
+                    }
+
+                    // Vérification si déjà testée
+                    if (lettres_deja_testees[lettre - 'A']) {
+                        strcpy(status, "deja");
+                        snprintf(messageRecu, LG_MESSAGE, "%s %s %d", status, mot_affiche, nb_erreurs);
+                        emit(JOUEUR_2_DONNEES_PARTIE, messageRecu, socket_client);
+                        break;
+                    }
+
+                    // Marquer la lettre comme testée
+                    lettres_deja_testees[lettre - 'A'] = 1;
+
+                    // Recherche dans le mot
+                    for (int i = 0; i < longueur_mot; i++) {
+                        if (mot_secret[i] == lettre) {
+                            mot_affiche[i] = lettre;
+                            trouve = 1;
+                        }
+                    }
+
+                    if (!trouve)
+                        nb_erreurs++;
                 }
+                // Cas mot
+                else {
+                    printf("Le joueur propose le mot : %s\n", reponse_message);
 
-                // Vérification si déjà testée
-                if (lettres_deja_testees[lettre - 'A']) {
-                    strcpy(status, "deja");
-                    snprintf(messageRecu, LG_MESSAGE, "%s %s %d", status, mot_affiche, nb_erreurs);
-                    emit(JOUEUR_2_DONNEES_PARTIE, messageRecu, socket_client);
-                    break;
-                }
-
-                // Marquer comme testée
-                lettres_deja_testees[lettre - 'A'] = 1;
-
-                // Recherche dans le mot
-                int trouve = 0;
-                for (int i = 0; i < longueur_mot; i++) {
-                    if (mot_secret[i] == lettre) {
-                        mot_affiche[i] = lettre;
-                        trouve = 1;
+                    // Vérifier mot complet
+                    if (strcmp(reponse_message, mot_secret) == 0) {
+                        strcpy(mot_affiche, mot_secret);
+                    } else {
+                        nb_erreurs++;
                     }
                 }
-
-                if (!trouve)
-                    nb_erreurs++;
 
                 // Vérifier mot complet
                 int mot_complet = 1;
@@ -310,7 +458,7 @@ int main(int argc, char *argv[]){
                 printf("Vous avez droit à 6 erreurs maximum\n");
                 printf("===========================================\n\n");
                 
-                joueur_choisi_lettre(socket_client);
+                joueur_choisi_lettre(socket_client, longueur_mot);
           
                 break;
             case JOUEUR_2_DONNEES_PARTIE:
@@ -322,7 +470,7 @@ int main(int argc, char *argv[]){
                 if (strcmp(status, "oui") == 0) {
                     printf("✓ Bonne lettre !\n");
                 } else if (strcmp(status, "non") == 0) {
-                    printf("✗ Mauvaise lettre.\n");
+                    printf("✗ Mauvaise lettre ou mot.\n");
                 } else if (strcmp(status, "deja") == 0) {
                     printf("⚠ Lettre déjà choisie. Choisissez-en une autre.\n");
                 } else if (strcmp(status, "erreur") == 0) {
@@ -352,7 +500,7 @@ int main(int argc, char *argv[]){
                     partie_en_cours = 0;
                     break;
                 } else {
-                    joueur_choisi_lettre(socket_client);
+                    joueur_choisi_lettre(socket_client, longueur_mot);
                 }
                 break;
             case MESSAGE:
@@ -367,3 +515,5 @@ int main(int argc, char *argv[]){
     close(socket_client);
     return 0;
 }
+PN_client_V3.c
+14 KB
