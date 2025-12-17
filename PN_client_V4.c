@@ -257,8 +257,21 @@ int main(int argc, char *argv[]){
         int nb_erreurs = 0;
 
         // Demander le mot secret
+        int ok = 1;
+       do{
         printf("Veuillez entrer un mot à deviner : ");
         scanf("%s", mot_secret);
+        for (int i = 0; mot_secret[i] != '\0'; i++) {
+            if (!isalpha(mot_secret[i])) {
+                printf("Sérieusement ? Choisis un VRAI mot cette fois hein.\n");
+                printf("Veuillez entrer un mot à deviner : ");
+                scanf("%s", mot_secret);
+            }
+            else{
+                ok = 0;
+            }
+        }
+       } while(ok==1);
 
         // Conversion en majuscules
         for(int i = 0; mot_secret[i]; i++) {
