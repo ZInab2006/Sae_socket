@@ -1,107 +1,128 @@
-# 🧩 SAE_Socket — Jeu du Pendu en C avec Sockets
+# JEU DU PENDU - Version 3 (V3)
 
-## 🎯 Description du projet
+## Description
 
-Le projet **SAE_Socket** a été réalisé dans le cadre d’une **SAÉ (Situation d’Apprentissage et d’Évaluation)** à l’IUT.  
-L’objectif principal est de concevoir **plusieurs versions évolutives** d’une application client-serveur en **langage C**, en utilisant **les sockets TCP/IP** pour la communication entre les processus.
+Version 3 du jeu du pendu en réseau. Cette version permet à **2 joueurs** de jouer ensemble, avec la possibilité pour le serveur de gérer **plusieurs parties simultanément** grâce à l'utilisation de `fork()`.
 
-Chaque version introduit de **nouvelles fonctionnalités** et une **meilleure architecture** réseau, en s’appuyant sur le même concept de base : le **jeu du Pendu**.
+- **Client unique** : Un seul fichier client qui gère automatiquement les deux rôles selon les codes reçus
+- **Client 1** : Le joueur qui fait deviner (entre le mot secret)
+- **Client 2** : Le joueur qui devine (propose des lettres)
 
----
+Le **serveur** fait transiter les messages entre les 2 clients et utilise des processus séparés (`fork()`) pour gérer chaque partie en parallèle.
 
-## 🧠 Objectifs pédagogiques
+## Architecture
 
-- Comprendre le **fonctionnement des sockets** en C (communication réseau bas niveau).  
-- Implémenter une architecture **client/serveur**.  
-- Gérer **les échanges et la synchronisation** entre plusieurs processus.  
-- Améliorer progressivement le code (**robustesse, modularité, expérience utilisateur**).  
+```
+Client 1 (fait deviner)  ←→  Serveur (relais + fork)  ←→  Client 2 (devine)
+                                    ↓
+                            [Processus enfant par partie]
+```
 
----
+## Améliorations par rapport à V2
 
-## ⚙️ Fonctionnement global
+- ✅ **Gestion de plusieurs parties simultanées** : Le serveur peut accepter plusieurs paires de joueurs en même temps
+- ✅ **Utilisation de `fork()`** : Chaque partie est gérée dans un processus séparé
+- ✅ **Système de codes de communication** : Messages formatés avec codes pour une meilleure organisation
+- ✅ **Client unique** : Un seul fichier client pour les deux rôles (détection automatique)
+- ✅ **Meilleure gestion des connexions** : Le serveur principal reste disponible pour de nouvelles parties
 
-Le projet se compose de deux programmes principaux :
+## Compilation
 
-- **Serveur** :  
-  Gère le mot à deviner, la connexion des clients, et les échanges réseau.  
-  Il renvoie les réponses et l’état du jeu à chaque tentative du joueur.
+### Linux/macOS :
+```bash
+# Compiler le serveur
+gcc -o PN_serveur_V3 PN_serveur_V3.c
 
-- **Client** :  
-  Se connecte au serveur, envoie les lettres à deviner, et affiche les retours côté joueur.
+# Compiler le client unique
+gcc -o PN_client_V3 PN_client_V3.c
+```
 
----
+### Windows (avec MinGW ou WSL) :
+Même commande dans WSL ou MinGW
 
-## 🚀 Versions développées
+## Exécution
 
-| Version | Description | Améliorations clés |
-|----------|--------------|--------------------|
-| **v1 — Connexion simple** | Création d’un serveur et d’un client basique avec des sockets TCP. | Envoi/réception de messages simples. |
-| **v2 — Jeu du pendu intégré** | Intégration de la logique du jeu du pendu côté serveur. | Gestion d’un seul joueur. |
-| **v3 — Multi-clients** | Le serveur gère plusieurs clients simultanément. | Utilisation de `select()` ou `fork()`. |
-| **v4 — Améliorations réseau** | Amélioration de la robustesse et de la modularité du code. | Meilleure gestion des erreurs, découpage en modules. |
+### Terminal 1 - Serveur :
+```bash
+./PN_serveur_V3
+```
 
----
+### Terminal 2 - Client 1 (fait deviner) :
+```bash
+./PN_client_V3 127.0.0.1 5000
+```
+Le client 1 reçoit automatiquement le code `2001` (JOUEUR_1_ENTRE_MOT) et doit entrer un mot à faire deviner.
 
-## 🧩 Architecture du dépôt
+### Terminal 3 - Client 2 (devine) :
+```bash
+./PN_client_V3 127.0.0.1 5000
+```
+Le client 2 reçoit automatiquement le code `2002` (JOUEUR_2_TAILLE_MOT_ET_PEUT_JOUER) et peut commencer à proposer des lettres.
 
-SAE_Socket/
-├── src/
-│ ├── serveur/
-│ │ ├── serveur_v1.c
-│ │ ├── serveur_v2.c
-│ │ ├── ...
-│ ├── client/
-│ │ ├── client_v1.c
-│ │ ├── client_v2.c
-│ │ ├── ...
-├── include/
-│ ├── fonctions.h
-│ ├── constants.h
-├── docs/
-│ ├── compte_rendu.pdf
-│ ├── diagrammes/
-└── README.md
+**Note** : Vous pouvez lancer plusieurs paires de clients simultanément, le serveur gérera chaque partie dans un processus séparé grâce à `fork()`.
 
----
+## Règles du jeu
 
-## 🧪 Compilation et exécution
+- Le **Client 1** entre un mot secret (maximum 50 caractères)
+- Le **Client 2** doit deviner le mot en proposant des lettres
+- Maximum d'erreurs : **6**
+- Le pendu s'affiche progressivement avec chaque erreur
+- La partie se termine quand :
+  - Le mot est complètement découvert → **Victoire**
+  - 6 erreurs sont commises → **Défaite**
 
-### Compilation
-Utiliser `make` pour compiler les différentes versions :
-make serveur_v2
-make client_v2
+## Format des messages (codes)
 
-### Exécution
-Démarrer d’abord le serveur :
-./serveur_v2
-Puis le client dans un autre terminal :
-./client_v2
+Le système utilise des codes numériques pour identifier le type de message :
 
----
+### Codes de communication :
+- **2001** : `JOUEUR_1_ENTRE_MOT` - Le serveur demande au Client 1 d'entrer un mot
+- **2002** : `JOUEUR_2_TAILLE_MOT_ET_PEUT_JOUER` - Le Client 2 reçoit la taille du mot et peut commencer
+- **2003** : `JOUEUR_2_PROPOSE_LETTRE` - Le Client 2 propose une lettre
+- **2004** : `JOUEUR_1_VALIDE_OU_NON` - Le Client 1 valide ou non la lettre
+- **2005** : `JOUEUR_2_RECOIT_VALIDE_OU_NON` - Le Client 2 reçoit la validation
+- **2006** : `JOUEUR_2_DONNEES_PARTIE` - Le Client 2 reçoit les données de la partie (mot, erreurs, statut)
+- **3001** : `MESSAGE` - Message informatif (ne déclenche aucune action)
 
-## 👥 Équipe de développement
+### Format des messages :
+Les messages sont formatés comme suit : `code:données`
 
-Projet réalisé par :  
-- **[OUTMANI Zinab]** — [S'occupe de la version n°0]  
-- **[KIME Marwa]** — [S'occupe de la version n°2]  
-- **[GOBFERT Frédéric]** — [S'occupe de la version n°1]
-- **[MOHAMMEDI Selyan]** — [S'occupe de la version n°3]  
+Exemples :
+- `2001:` → Demande au Client 1 d'entrer un mot
+- `2002:5` → Client 2 reçoit la taille du mot (5 lettres)
+- `2003:P` → Client 2 propose la lettre P
+- `2006:oui P__DU 0` → Client 2 reçoit les données (oui, mot partiel, 0 erreur)
 
+## Fonctionnalités
 
-> Encadré par **[M.François Rousselle]**, Département Informatique — IUT de Calais.
+- ✅ Communication TCP/IP avec système de codes
+- ✅ Gestion multi-parties simultanées avec `fork()`
+- ✅ Client unique pour les deux rôles (détection automatique)
+- ✅ Affichage du pendu ASCII selon le nombre d'erreurs
+- ✅ Gestion des lettres déjà testées
+- ✅ Détection automatique de fin de partie
+- ✅ Serveur qui reste actif pour plusieurs parties
 
----
+## Organigramme
 
-## 📚 Technologies utilisées
+Un organigramme détaillé de la communication est disponible dans `organigramme_V3.svg`.
 
-- **Langage** : C pur  
-- **Protocoles** : TCP/IP (sockets POSIX)  
-- **Outils** : GCC, Makefile, Git, Linux terminal  
+## En cas de problème
 
----
+### Port déjà utilisé :
+```bash
+lsof -i :5000
+kill -9 [PID]
+```
 
-## 🧾 Licence
+### Erreur de connexion :
+- Vérifier que le serveur est lancé avant les clients
+- Vérifier l'IP et le port (127.0.0.1:5000 par défaut)
 
-Projet académique — utilisation libre à des fins pédagogiques.
+### Problème avec fork() :
+- Vérifier que le système supporte `fork()` (Linux/macOS)
+- Sur Windows, utiliser WSL ou MinGW
 
----
+## Auteur
+
+MOHAMMEDI Selyan
